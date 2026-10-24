@@ -130,6 +130,11 @@ public class AutoClickerApp extends JFrame {
     private void simulateMouseClick() {
         try {
             Robot robot = new Robot();
+            PointerInfo pointerInfo = MouseInfo.getPointerInfo();
+            if (pointerInfo != null) {
+                Point p = pointerInfo.getLocation();
+                robot.mouseMove(p.x, p.y);
+            }
             robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
             robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         } catch (AWTException e) {
